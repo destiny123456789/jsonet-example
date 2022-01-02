@@ -2,8 +2,8 @@
 name: Build jsonnet
 on:
   push:
-  
-    branches: ['release']
+    branches:
+      - release
 
 jobs:
   run:
