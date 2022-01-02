@@ -3,7 +3,7 @@ name: Build jsonnet
 on:
   push:
     branches:
-      - release
+    - release
 
 jobs:
   run:
