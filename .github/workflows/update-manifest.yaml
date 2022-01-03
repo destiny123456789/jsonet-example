@@ -21,11 +21,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Setup kubecfg CLI
-        uses: kingdonb/kubecfg/action@main
-
-      - name: kubecfg show
-        run: "./ci/kubecfg.sh VERSION=${{ steps.prep.outputs.VERSION }}"
+      - id: jsonnet-render
+        uses: alexdglover/jsonnet-render@v1
+        with:
+          file: manifests/example.jsonnet
+          output_file: output/production.yaml
+          params: dryrun=true;env=prod
 
       - name: Prepare target branch
         run: ./ci/rake.sh deploy
