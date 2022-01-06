@@ -21,6 +21,9 @@ jobs:
           echo ::set-output name=VERSION::${VERSION}
           echo ::set-output name=GITHUB_REF::{$GITHUB_REF}
           
+      - name: Get GITHUB_REF
+        run: echo "The GITHUB_REF is ${{ steps.prep.outputs.GITHUB_REF }}"
+          
       - name: Checkout repo
         uses: actions/checkout@v2
 
