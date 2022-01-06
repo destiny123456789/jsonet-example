@@ -2,7 +2,7 @@
 name: Build jsonnet test
 on:
   push:
-    branches: [ main ]
+    branches: [ release ]
 
 jobs:
   run:
