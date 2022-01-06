@@ -23,6 +23,11 @@ jobs:
           
       - name: Get GITHUB_REF
         run: echo "The GITHUB_REF is ${{ steps.prep.outputs.GITHUB_REF }}"
+        
+      - name: Get version
+        run: echo "VERSION is ${{ steps.prep.outputs.VERSION }}"
+
+        
           
       - name: Checkout repo
         uses: actions/checkout@v2
