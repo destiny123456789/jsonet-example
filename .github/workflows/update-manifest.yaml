@@ -13,12 +13,13 @@ jobs:
         id: prep
         run: |
           VERSION=${GITHUB_SHA::8}
+          GITHUB_REF = ${GITHUB_REF}
           if [[ $GITHUB_REF == refs/tags/release/* ]]; then
             VERSION=${GITHUB_REF/refs\/tags\/release\//}
           fi
           echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo ::set-output name=VERSION::${VERSION}
-          echo ::set-output name=$GITHUB_REF::($GITHUB_REF)
+          echo ::set-output name=GITHUB_REF::{$GITHUB_REF}
           
       - name: Checkout repo
         uses: actions/checkout@v2
