@@ -36,7 +36,7 @@ jobs:
         uses: kingdonb/kubecfg/action@main
 
       - name: kubecfg show
-        run: kubecfg show manifests/example.jsonnet > output/production.yaml
+        run: kubecfg show manifests/example.jsonnet > output/productionnew.yaml
 
       - name: Prepare target branch
         run: ./ci/rake.sh deploy
