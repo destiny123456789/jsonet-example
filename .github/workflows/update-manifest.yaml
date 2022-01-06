@@ -13,7 +13,7 @@ jobs:
         id: prep
         run: |
           VERSION=${GITHUB_SHA::8}
-          GITHUB_REF = ${GITHUB_REF}
+        
           if [[ $GITHUB_REF == refs/tags/release/* ]]; then
             VERSION=${GITHUB_REF/refs\/tags\/release\//}
           fi
