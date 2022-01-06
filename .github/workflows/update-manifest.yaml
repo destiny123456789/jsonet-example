@@ -1,5 +1,5 @@
 # ./.github/workflows/03-release-manifests.yaml
-name: Build jsonnet
+name: Build jsonnety
 on:
   push:
     branches: [ main ]
@@ -13,20 +13,30 @@ jobs:
         id: prep
         run: |
           VERSION=${GITHUB_SHA::8}
+        
           if [[ $GITHUB_REF == refs/tags/release/* ]]; then
             VERSION=${GITHUB_REF/refs\/tags\/release\//}
           fi
           echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo ::set-output name=VERSION::${VERSION}
+          echo ::set-output name=GITHUB_REF::{$GITHUB_REF}
+          
+      - name: Get GITHUB_REF
+        run: echo "The GITHUB_REF is ${{ steps.prep.outputs.GITHUB_REF }}"
+        
+      - name: Get version
+        run: echo "VERSION is ${{ steps.prep.outputs.VERSION }}"
+
+        
+          
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - id: jsonnet-render
-        uses: alexdglover/jsonnet-render@v1
-        with:
-          file: manifests/example.jsonnet
-          output_file: output/production.yaml
-          params: dryrun=true;env=prod
+      - name: Setup kubecfg CLI
+        uses: kingdonb/kubecfg/action@main
+
+      - name: kubecfg show
+        run: kubecfg show manifests/example.jsonnet > output/productionnew.yaml
 
       - name: Prepare target branch
         run: ./ci/rake.sh deploy
@@ -34,7 +44,7 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
-          add: 'production.yaml'
+          add: 'productionnew.yaml'
           branch: deploy
           message: "[ci skip] from ${{ steps.prep.outputs.VERSION }}"
           signoff: true
