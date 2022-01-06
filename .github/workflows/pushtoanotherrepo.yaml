@@ -31,9 +31,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'flux-config'
-          destination-github-username: 'kingdonb'
-          destination-repository-name: 'fleet-infra'
-          target-branch: 'deploy'
-          user-email: kingdon+bot@weave.works
+          
+          destination-github-username: 'destiny123456789'
+          destination-repository-name: 'Testforpush'
+          target-branch: 'master'
+          user-email: akash.kotkar321@gmail.com
           commit-message: "[ci skip] deploy from ${{ steps.prep.outputs.VERSION }}"
