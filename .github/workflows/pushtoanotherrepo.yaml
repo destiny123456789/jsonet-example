@@ -22,8 +22,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Update manifests
-        run: ./update-k8s.sh $GITHUB_SHA
+      
 
       - name: Push directory to another repository
         uses: cpina/github-action-push-to-another-repository@v1.2
