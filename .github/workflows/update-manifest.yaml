@@ -1,5 +1,5 @@
 # ./.github/workflows/03-release-manifests.yaml
-name: Build jsonnet test
+name: Build jsonnet
 on:
   push:
     branches: [ release ]
